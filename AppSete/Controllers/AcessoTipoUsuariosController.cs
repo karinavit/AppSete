@@ -10,7 +10,7 @@ using AppSete.Models;
 
 namespace AppSete.Controllers
 {
-    public class AcessoTipoUsuariosController : Controller
+    public class AcessoTipoUsuariosController : BaseControllerClass
     {
         private readonly ApplicationDbContext _context;
 
@@ -48,7 +48,7 @@ namespace AppSete.Controllers
         // GET: AcessoTipoUsuarios/Create
         public IActionResult Create()
         {
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id");
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "TipoUsuario");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace AppSete.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", acessoTipoUsuario.IdTipoUsuario);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "TipoUsuario", acessoTipoUsuario.IdTipoUsuario);
             return View(acessoTipoUsuario);
         }
 
@@ -82,7 +82,7 @@ namespace AppSete.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", acessoTipoUsuario.IdTipoUsuario);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "TipoUsuario", acessoTipoUsuario.IdTipoUsuario);
             return View(acessoTipoUsuario);
         }
 
@@ -118,7 +118,7 @@ namespace AppSete.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", acessoTipoUsuario.IdTipoUsuario);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "TipoUsuario", acessoTipoUsuario.IdTipoUsuario);
             return View(acessoTipoUsuario);
         }
 

@@ -16,6 +16,6 @@ namespace AppSete.Models
 
         [Display(Name = "Tipo Usuário")]
         [Column("NomeTipoUsuario")]
-        public int NomeTipoUsuario { get; set; }
+        public string NomeTipoUsuario { get; set; }
     }
 }

@@ -219,6 +219,21 @@ namespace AppSete.Data.Migrations
                        onDelete: ReferentialAction.Cascade);
 
                });
+            migrationBuilder.CreateTable(
+                name: "CadastroPessoa",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: true),
+                    Cpf = table.Column<string>(nullable: true),
+                    RegAtivo = table.Column<bool>(nullable: false),
+                    DataRegistro = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CadastroPessoa", x => x.Id);
+                });
 
 
 

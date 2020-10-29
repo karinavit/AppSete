@@ -10,7 +10,7 @@ using AppSete.Models;
 
 namespace AppSete.Controllers
 {
-    public class PerfilUsuariosController : Controller
+    public class PerfilUsuariosController : BaseControllerClass
     {
         private readonly ApplicationDbContext _context;
 
@@ -49,8 +49,8 @@ namespace AppSete.Controllers
         // GET: PerfilUsuarios/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace AppSete.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", perfilUsuario.UserId);
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", perfilUsuario.IdTipoUsuario);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", perfilUsuario.UserId);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", perfilUsuario.IdTipoUsuario);
             return View(perfilUsuario);
         }
 
@@ -85,8 +85,8 @@ namespace AppSete.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", perfilUsuario.UserId);
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", perfilUsuario.IdTipoUsuario);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", perfilUsuario.UserId);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", perfilUsuario.IdTipoUsuario);
             return View(perfilUsuario);
         }
 
@@ -122,8 +122,8 @@ namespace AppSete.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", perfilUsuario.UserId);
-            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "Id", perfilUsuario.IdTipoUsuario);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", perfilUsuario.UserId);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", perfilUsuario.IdTipoUsuario);
             return View(perfilUsuario);
         }
 

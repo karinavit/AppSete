@@ -10,85 +10,85 @@ using AppSete.Models;
 
 namespace AppSete.Controllers
 {
-    public class TipoUsuariosController : Controller //BaseControllerClass
+    public class CadastroPessoasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public TipoUsuariosController(ApplicationDbContext context)
+        public CadastroPessoasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: TipoUsuarios
+        // GET: CadastroPessoas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TipoUsuario.ToListAsync());
+            return View(await _context.CadastroPessoa.ToListAsync());
         }
 
-        // GET: TipoUsuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: CadastroPessoas/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tipoUsuario = await _context.TipoUsuario
+            var cadastroPessoa = await _context.CadastroPessoa
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (tipoUsuario == null)
+            if (cadastroPessoa == null)
             {
                 return NotFound();
             }
 
-            return View(tipoUsuario);
+            return View(cadastroPessoa);
         }
 
-        // GET: TipoUsuarios/Create
+        // GET: CadastroPessoas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoUsuarios/Create
+        // POST: CadastroPessoas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NomeTipoUsuario")] TipoUsuario tipoUsuario)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Cpf,RegAtivo,DataRegistro")] CadastroPessoa cadastroPessoa)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tipoUsuario);
+                _context.Add(cadastroPessoa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoUsuario);
+            return View(cadastroPessoa);
         }
 
-        // GET: TipoUsuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: CadastroPessoas/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tipoUsuario = await _context.TipoUsuario.FindAsync(id);
-            if (tipoUsuario == null)
+            var cadastroPessoa = await _context.CadastroPessoa.FindAsync(id);
+            if (cadastroPessoa == null)
             {
                 return NotFound();
             }
-            return View(tipoUsuario);
+            return View(cadastroPessoa);
         }
 
-        // POST: TipoUsuarios/Edit/5
+        // POST: CadastroPessoas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeTipoUsuario")] TipoUsuario tipoUsuario)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Nome,Cpf,RegAtivo,DataRegistro")] CadastroPessoa cadastroPessoa)
         {
-            if (id != tipoUsuario.Id)
+            if (id != cadastroPessoa.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace AppSete.Controllers
             {
                 try
                 {
-                    _context.Update(tipoUsuario);
+                    _context.Update(cadastroPessoa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipoUsuarioExists(tipoUsuario.Id))
+                    if (!CadastroPessoaExists(cadastroPessoa.Id))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace AppSete.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoUsuario);
+            return View(cadastroPessoa);
         }
 
-        // GET: TipoUsuarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: CadastroPessoas/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tipoUsuario = await _context.TipoUsuario
+            var cadastroPessoa = await _context.CadastroPessoa
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (tipoUsuario == null)
+            if (cadastroPessoa == null)
             {
                 return NotFound();
             }
 
-            return View(tipoUsuario);
+            return View(cadastroPessoa);
         }
 
-        // POST: TipoUsuarios/Delete/5
+        // POST: CadastroPessoas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var tipoUsuario = await _context.TipoUsuario.FindAsync(id);
-            _context.TipoUsuario.Remove(tipoUsuario);
+            var cadastroPessoa = await _context.CadastroPessoa.FindAsync(id);
+            _context.CadastroPessoa.Remove(cadastroPessoa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TipoUsuarioExists(int id)
+        private bool CadastroPessoaExists(string id)
         {
-            return _context.TipoUsuario.Any(e => e.Id == id);
+            return _context.CadastroPessoa.Any(e => e.Id == id);
         }
     }
 }
