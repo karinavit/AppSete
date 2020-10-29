@@ -24,6 +24,7 @@ namespace AppSete.Models
         [Column(Order = 1)]
         public int IdTipoUsuario { get; set; }
 
+
         public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }
